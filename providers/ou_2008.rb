@@ -72,7 +72,7 @@ def exists?
     ldap = CmdHelper.ou_partial_dn(new_resource.ou) << ','
     ldap << dc_partial_dn
   end
-  check = CmdHelper.shell_out("dsquery ou -name \"#{new_resource.name}\"",
+  check = CmdHelper.shell_out("dsquery \"#{ldap}\" ou -name \"#{new_resource.name}\"",
                               new_resource.cmd_user, new_resource.cmd_pass,
                               new_resource.cmd_domain)
   path = "OU=#{new_resource.name},"
